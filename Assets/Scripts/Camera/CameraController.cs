@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     
     private float _transitionValue;
     private bool _isMoving = false;
-    private UnityEvent _onDestination;
+    private UnityAction _onDestination;
     
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
         _isMoving = false;
     }
     
-    public void ChangeViewpoint(Transform viewpoint, UnityEvent onDestination = null)
+    public void ChangeViewpoint(Transform viewpoint, UnityAction onDestination = null)
     {
         if (_isMoving)
             return;
@@ -57,8 +57,8 @@ public class CameraController : MonoBehaviour
         StartCoroutine(MoveTransition());
     }
     
-    public void ResetViewpoint()
+    public void ResetViewpoint(UnityAction onDestination = null)
     {
-        ChangeViewpoint(_viewpointOrigin);
+        ChangeViewpoint(_viewpointOrigin, onDestination);
     }
 }
